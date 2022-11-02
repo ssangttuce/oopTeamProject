@@ -52,6 +52,7 @@ public class Dashboard {
             System.out.format("\t4. 일정 추가\n");
             System.out.format("\t5. 일정 삭제\n");
             menuNum = scan.nextInt();
+            scan.nextLine();
             if (menuNum == 0)
                 break;
             switch (menuNum) {
@@ -69,6 +70,7 @@ public class Dashboard {
                     taskMgr.printAll();
                     System.out.print("\n삭제할 Task 번호 선택: ");
                     int tskNum = scan.nextInt();
+                    scan.nextLine();
                     taskMgr.mList.remove(tskNum - 1);
                     System.out.println("삭제되었습니다.");
                     classify();
@@ -79,15 +81,16 @@ public class Dashboard {
 
     void search() {
         System.out.format("검색 키워드 입력: ");
-        String kwd = scan.next();
+        String kwd = scan.nextLine();
         System.out.println();
-        scheduleMgr.search(kwd);
+        scheduleMgr.search(kwd.strip());
     }
 
     void modify() {
         taskMgr.printAll();
         System.out.print("\n수정할 Task 번호 선택: ");
         int tskNum = scan.nextInt();
+        scan.nextLine();
         taskMgr.mList.get(tskNum - 1).print();
 
         System.out.format("\n\t0. 수정 종료\n");

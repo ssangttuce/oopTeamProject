@@ -2,7 +2,9 @@ package dashboard;
 
 import mgr.Manageable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class Schedule implements Manageable {
@@ -25,10 +27,12 @@ public class Schedule implements Manageable {
             else
                 taskList.remove(t);
         }
+        List<Task> removed = new ArrayList<>();
         for (Task t : taskList) {
             if (!Dashboard.taskMgr.mList.contains(t))
-                taskList.remove(t);
+                removed.add(t);
         }
+        taskList.removeAll(removed);//taskMgr에 없는 Task를 가진 경우 모두 삭제
     }
 
     @Override
@@ -49,6 +53,5 @@ public class Schedule implements Manageable {
             t.matches(kwd);
         }
         System.out.println("-".repeat(80));
-        System.out.println();
     }
 }
